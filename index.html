@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <!-- Background Slideshow -->
   <div class="background-slideshow" id="background"></div>
 
-  <!-- Centered Title -->
+  <!-- Hero Header -->
   <div class="header-wrapper" id="header">
     <h1 class="name">Your name</h1>
     <h2 class="tagline">(IN THE COLLECTION)</h2>
@@ -22,14 +23,14 @@
     <div class="tagline">(IN THE COLLECTION)</div>
   </div>
 
-  <!-- Scroll Content -->
+  <!-- Scrollable Content -->
   <div class="spacer">
-    Scroll down to see the sticky title activate...
+    Scroll down to see the sticky header and fading background.
   </div>
 
-  <!-- Scroll & Slideshow Script -->
+  <!-- Scripts -->
   <script>
-    // Sticky Scroll Behavior
+    // Sticky Header Logic
     const header = document.getElementById('header');
     const stickyHeader = document.getElementById('stickyHeader');
 
@@ -44,12 +45,12 @@
       }
     });
 
-    // Background Slideshow + Scroll Fade
+    // Background Slideshow
     const background = document.getElementById('background');
-   const imageUrls = [
-  'images/risd1.jpg',
-  'images/risd2.jpg',
-  'images/risd3.jpg'
+    const imageUrls = [
+      'images/risd1.jpg',
+      'images/risd2.jpg',
+      'images/risd3.jpg'
     ];
 
     let current = 0;
@@ -59,6 +60,7 @@
       current = (current + 1) % imageUrls.length;
     }
 
+    // Preload Images
     imageUrls.forEach(src => {
       const img = new Image();
       img.src = src;
@@ -67,6 +69,7 @@
     changeBackground();
     setInterval(changeBackground, 8000);
 
+    // Scroll-Based Fade Out
     window.addEventListener('scroll', () => {
       const maxScroll = window.innerHeight * 2;
       const scrollY = Math.min(window.scrollY, maxScroll);
@@ -77,9 +80,4 @@
 </body>
 </html>
 
-
-
-
-</body>
-</html>
 
