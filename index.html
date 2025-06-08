@@ -99,21 +99,22 @@
   </div>
 
   <script>
-    const header = document.getElementById('header');
-    const stickyHeader = document.getElementById('stickyHeader');
+  const header = document.getElementById('header');
+  const stickyHeader = document.getElementById('stickyHeader');
 
-    window.addEventListener('scroll', () => {
-      const threshold = header.offsetHeight * 0.5;
+  window.addEventListener('scroll', () => {
+    const threshold = header.offsetHeight * 0.5;
 
-      if (window.scrollY > threshold) {
-        stickyHeader.style.display = 'flex';
-        header.style.opacity = '0';
-      } else {
-        stickyHeader.style.display = 'none';
-        header.style.opacity = '1';
-      }
-    });
-  </script>
+    if (window.scrollY > threshold) {
+      stickyHeader.style.display = 'flex';
+      header.style.opacity = '0';
+    } else {
+      stickyHeader.style.display = 'none';
+      header.style.opacity = '1';
+    }
+  });
+</script>
+
 </body>
 </html>
 
