@@ -19,6 +19,7 @@ body {
   color: white;
   font-family: 'Panel Mono', monospace;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 .background-slideshow {
@@ -43,46 +44,34 @@ body {
   text-align: center;
   padding: 2rem;
   box-sizing: border-box;
-  animation: fadeIn 1s ease-out both;
-}
-
-.name {
-  font-family: 'Aileron Light', sans-serif;
-  font-size: 2rem;
-  margin: 0;
-  transition: all 0.3s ease;
-}
-
-.tagline {
-  font-family: 'Panel Mono', monospace;
-  font-size: 4rem;
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  margin-top: 0.5rem;
-  transition: all 0.3s ease;
+  transition: opacity 0.5s ease;
+  gap: 1rem;
 }
 
 #nameInput {
   font-family: 'Aileron Light', sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   background: transparent;
   color: white;
   border: none;
   border-bottom: 2px solid white;
   outline: none;
   text-align: center;
-  opacity: 1;
+  transition: transform 0.3s ease;
   caret-color: white;
-  animation: blinkCursor 1s steps(2, start) infinite;
 }
 
 #nameInput::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 
-@keyframes blinkCursor {
-  0%, 100% { caret-color: transparent; }
-  50% { caret-color: white; }
+.tagline {
+  font-family: 'Panel Mono', monospace;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin: 0;
+  transition: transform 0.3s ease;
 }
 
 .sticky-header {
@@ -100,11 +89,11 @@ body {
   transform: scale(0.95);
   opacity: 1;
   transition: all 0.3s ease;
+  font-size: 1.5rem;
 }
 
 .sticky-header .name,
 .sticky-header .tagline {
-  font-size: 1.5rem;
   white-space: nowrap;
   margin: 0;
 }
@@ -125,4 +114,3 @@ body {
     transform: translateY(0);
   }
 }
-
