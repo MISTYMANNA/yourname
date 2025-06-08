@@ -59,13 +59,14 @@
     changeBackground();
     setInterval(changeBackground, 8000);
 
+    // Background fade out
     window.addEventListener('scroll', () => {
       const maxScroll = window.innerHeight * 2;
       const scrollY = Math.min(window.scrollY, maxScroll);
       const opacity = 1 - scrollY / maxScroll;
       background.style.opacity = opacity;
 
-      // Transform "Your name" to input after full scroll
+      // Show input when fully scrolled
       if (scrollY >= maxScroll) {
         nameText.style.display = 'none';
         nameInput.style.display = 'inline-block';
@@ -76,6 +77,7 @@
       }
     });
 
+    // Sticky header logic
     window.addEventListener('scroll', () => {
       const threshold = window.innerHeight * 0.5;
       if (window.scrollY > threshold) {
