@@ -1,4 +1,3 @@
-/* === Font Faces (Optional) === */
 @font-face {
   font-family: 'Aileron Light';
   src: url('fonts/Aileron-Light.woff') format('woff');
@@ -13,17 +12,14 @@
   font-style: normal;
 }
 
-/* === Base Styles === */
 body {
   margin: 0;
   background: black;
   color: white;
-  font-smooth: always;
-  -webkit-font-smoothing: antialiased;
   font-family: 'Panel Mono', monospace;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* === Background Slideshow === */
 .background-slideshow {
   position: fixed;
   top: 0;
@@ -34,20 +30,24 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
-  filter: blur(10px);
   transition: opacity 1s ease, background-image 1s ease;
-  mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
 }
 
-/* === Initial Header (Centered) === */
+.blur-layer {
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: none;
+  transition: mask-image 0.2s ease, -webkit-mask-image 0.2s ease;
+}
+
 .header-wrapper {
-  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 2rem;
   box-sizing: border-box;
@@ -70,7 +70,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* === Sticky Header on Scroll === */
 .sticky-header {
   position: fixed;
   top: 0;
@@ -95,14 +94,12 @@ body {
   margin: 0;
 }
 
-/* === Scroll Filler === */
 .spacer {
   height: 200vh;
   padding: 2rem;
   font-family: sans-serif;
 }
 
-/* === Fade In Animation === */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -112,21 +109,5 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.background-slideshow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-  filter: blur(10px); /* blur only */
-  transition: opacity 1s ease, background-image 1s ease;
-  mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
 }
 
