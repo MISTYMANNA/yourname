@@ -115,6 +115,35 @@
   });
 </script>
 
+  <script>
+  const background = document.getElementById('background');
+  const imageUrls = [
+    'https://raw.githubusercontent.com/MISTYMANNA/yourname/images/images/risd1.jpg',
+    'https://raw.githubusercontent.com/MISTYMANNA/yourname/images/images/risd2.jpg',
+    'https://raw.githubusercontent.com/MISTYMANNA/yourname/images/images/risd3.jpg'
+  ];
+
+  let current = 0;
+
+  function changeBackground() {
+    background.style.backgroundImage = `url(${imageUrls[current]})`;
+    current = (current + 1) % imageUrls.length;
+  }
+
+  // Initial background load
+  changeBackground();
+  setInterval(changeBackground, 8000);
+
+  // Fade out background on scroll
+  window.addEventListener('scroll', () => {
+    const maxScroll = window.innerHeight * 2;
+    const scrollY = Math.min(window.scrollY, maxScroll);
+    const opacity = 1 - scrollY / maxScroll;
+    background.style.opacity = opacity;
+  });
+</script>
+
+
 </body>
 </html>
 
