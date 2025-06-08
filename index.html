@@ -5,33 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>In the Collection</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* TEMP: fallback fonts */
+    @font-face {
+      font-family: 'Aileron Light';
+      src: local("Arial"); /* replace with real file later */
+    }
+
+    @font-face {
+      font-family: 'Panel Mono';
+      src: local("Courier New"); /* replace with real file later */
+    }
+
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-smooth: always;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Panel Mono', monospace;
+    }
+
+    .header-wrapper {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .name {
+      font-family: 'Aileron Light', sans-serif;
+      font-size: 2rem;
+      margin: 0;
+      transition: all 0.3s ease;
+    }
+
+    .tagline {
+      font-family: 'Panel Mono', monospace;
+      font-size: 3rem;
+      margin: 0.3rem 0 0;
+      transition: all 0.3s ease;
+    }
+
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+      z-index: 999;
+      text-align: center;
+      transform: scale(0.95);
+    }
+
+    .sticky-header .name,
+    .sticky-header .tagline {
+      font-size: 1.5rem;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .spacer {
+      height: 200vh;
+      padding: 2rem;
+      font-family: sans-serif;
+    }
+  </style>
 </head>
 <body>
-  <div class="header-wrapper">
-    <div class="header" id="scroll-header">
-      <div class="name">Your name</div>
-      <div class="tagline">(IN THE COLLECTION)</div>
-    </div>
+
+  <!-- Large Hero Header -->
+  <div class="header-wrapper" id="header">
+    <h1 class="name">Your name</h1>
+    <h2 class="tagline">(IN THE COLLECTION)</h2>
   </div>
 
-  <div class="placeholder-content">
-    <!-- Placeholder for scroll -->
-    <p>Scroll down to test sticky transition</p>
-    <div style="height: 2000px;"></div>
+  <!-- Sticky header -->
+  <div class="sticky-header" id="stickyHeader" style="display: none;">
+    <div class="name">Your name</div>
+    <div class="tagline">(IN THE COLLECTION)</div>
+  </div>
+
+  <!-- Scroll Content -->
+  <div class="spacer">
+    Scroll down to see the sticky title activate...
   </div>
 
   <script>
-  const header = document.getElementById('scroll-header');
-  const triggerPoint = window.innerHeight * 0.6;
+    const header = document.getElementById('header');
+    const stickyHeader = document.getElementById('stickyHeader');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > triggerPoint) {
-      header.classList.add('sticky');
-    } else {
-      header.classList.remove('sticky');
-    }
-  });
-</script>
+    window.addEventListener('scroll', () => {
+      const threshold = header.offsetHeight * 0.5;
 
+      if (window.scrollY > threshold) {
+        stickyHeader.style.display = 'flex';
+        header.style.opacity = '0';
+      } else {
+        stickyHeader.style.display = 'none';
+        header.style.opacity = '1';
+      }
+    });
+  </script>
 </body>
 </html>
+
