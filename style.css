@@ -62,6 +62,29 @@ body {
   transition: all 0.3s ease;
 }
 
+#nameInput {
+  font-family: 'Aileron Light', sans-serif;
+  font-size: 3rem;
+  background: transparent;
+  color: white;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  text-align: center;
+  opacity: 1;
+  caret-color: white;
+  animation: blinkCursor 1s steps(2, start) infinite;
+}
+
+#nameInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes blinkCursor {
+  0%, 100% { caret-color: transparent; }
+  50% { caret-color: white; }
+}
+
 .sticky-header {
   position: fixed;
   top: 0;
