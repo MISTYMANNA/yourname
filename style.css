@@ -1,3 +1,4 @@
+/* === Font Faces (Optional) === */
 @font-face {
   font-family: 'Aileron Light';
   src: url('fonts/Aileron-Light.woff') format('woff');
@@ -33,15 +34,6 @@ body {
   transition: opacity 1s ease, background-image 1s ease;
 }
 
-.blur-layer {
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  pointer-events: none;
-  transition: mask-image 0.2s ease, -webkit-mask-image 0.2s ease;
-}
-
 .header-wrapper {
   min-height: 100vh;
   display: flex;
@@ -74,6 +66,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,3 +102,4 @@ body {
     transform: translateY(0);
   }
 }
+
