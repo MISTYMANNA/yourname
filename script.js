@@ -8,3 +8,13 @@ window.addEventListener('scroll', () => {
     header.classList.remove('sticky');
   }
 });
+
+if (window.scrollY > threshold) {
+  stickyHeader.style.display = 'flex';
+  setTimeout(() => stickyHeader.classList.add('show'), 10);
+  header.style.opacity = '0';
+} else {
+  stickyHeader.classList.remove('show');
+  setTimeout(() => stickyHeader.style.display = 'none', 300);
+  header.style.opacity = '1';
+}
