@@ -32,10 +32,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
-  filter: blur(10px);
   transition: opacity 1s ease, background-image 1s ease;
-  mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
 }
 
 .header-wrapper {
@@ -57,10 +54,10 @@ body {
   background: transparent;
   color: white;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 0.8px solid white;
   outline: none;
   text-align: center;
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.3s ease;
   caret-color: white;
 }
 
@@ -74,7 +71,7 @@ body {
   font-weight: 300;
   letter-spacing: 0.05em;
   margin: 0;
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.3s ease;
 }
 
 .sticky-header {
@@ -84,31 +81,21 @@ body {
   background: transparent;
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
   padding: 0.5rem 1rem;
   gap: 1rem;
   z-index: 999;
   text-align: center;
   transform: scale(0.95);
   opacity: 1;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
+  font-size: 1.5rem;
 }
 
-.sticky-header .name {
-  white-space: nowrap;
-  margin: 0;
-  font-size: 2rem;
-  font-family: 'Aileron Light', sans-serif;
-  border-bottom: 2px solid white;
-  line-height: 1.2;
-}
-
+.sticky-header .name,
 .sticky-header .tagline {
   white-space: nowrap;
   margin: 0;
-  font-size: 2rem;
-  font-family: 'Panel Mono', monospace;
-  line-height: 1.2;
 }
 
 .spacer {
@@ -120,27 +107,10 @@ body {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-/* Mouse unblur spotlight */
-body {
-  cursor: none;
-}
-
-#background {
-  pointer-events: none;
-}
-
-html {
-  height: 100%;
-  width: 100%;
-}
-
-/* Will be controlled via JS: update mask on mouse move */
-
