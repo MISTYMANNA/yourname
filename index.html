@@ -8,10 +8,8 @@
 </head>
 <body>
 
-  <!-- Background Image Container -->
-  <div class="background-slideshow" id="background">
-    <div class="blur-layer" id="blurLayer"></div>
-  </div>
+  <!-- Background Slideshow -->
+  <div class="background-slideshow" id="background"></div>
 
   <!-- Hero Header -->
   <div class="header-wrapper" id="header">
@@ -35,7 +33,6 @@
     const header = document.getElementById('header');
     const stickyHeader = document.getElementById('stickyHeader');
     const background = document.getElementById('background');
-    const blurLayer = document.getElementById('blurLayer');
 
     const imageUrls = [
       'images/risd1.jpg',
@@ -75,13 +72,6 @@
         stickyHeader.style.display = 'none';
         header.style.opacity = '1';
       }
-    });
-
-    document.addEventListener('mousemove', e => {
-      const x = e.clientX;
-      const y = e.clientY;
-      blurLayer.style.maskImage = `radial-gradient(circle 150px at ${x}px ${y}px, transparent 0%, black 100%)`;
-      blurLayer.style.webkitMaskImage = `radial-gradient(circle 150px at ${x}px ${y}px, transparent 0%, black 100%)`;
     });
   </script>
 </body>
