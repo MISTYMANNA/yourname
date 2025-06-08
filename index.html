@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>In the Collection</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .background-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+      opacity: 1;
+      filter: blur(10px);
+      transition: opacity 1s ease, filter 0.3s ease;
+      mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
+      -webkit-mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
+    }
+
+    .background-slideshow.clear {
+      filter: blur(0px);
+    }
+  </style>
 </head>
 <body>
 
@@ -30,9 +52,73 @@
 
   <!-- Scripts -->
   <script>
-    // Sticky Header Logic
     const header = document.getElementById('header');
     const stickyHeader = document.getElementById('stickyHeader');
+    const background = document.getElementById('background');
+    const imageUrls = [
+      'images/risd1.jpg',
+      'images/risd2.jpg',
+      'images/risd3.jpg'
+    ];
+
+    let current = 0;
+
+    function changeBackground() {
+      const img = new Image();
+      img.src = imageUrls[current];
+      img.onload = () => {
+        background.style.opacity = 0;
+        setTimeout(() => {
+          background.style.backgroundImage = `url(${img.src})`;
+          background.style.opacity = 1;
+          updateTextColor(img);
+        }, 1000);
+      };
+      current = (current + 1) % imageUrls.length;
+    }
+
+    function updateTextColor(img) {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = 10;
+      canvas.height = 10;
+      ctx.drawImage(img, 0, 0, 10, 10);
+      let r = 0, g = 0, b = 0;
+      const data = ctx.getImageData(0, 0, 10, 10).data;
+      for (let i = 0; i < data.length; i += 4) {
+        r += data[i];
+        g += data[i + 1];
+        b += data[i + 2];
+      }
+      r /= (data.length / 4);
+      g /= (data.length / 4);
+      b /= (data.length / 4);
+      const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+      const textColor = luminance > 128 ? 'black' : 'white';
+      document.body.style.color = textColor;
+    }
+
+    imageUrls.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    changeBackground();
+    setInterval(changeBackground, 8000);
+
+    window.addEventListener('scroll', () => {
+      const maxScroll = window.innerHeight * 2;
+      const scrollY = Math.min(window.scrollY, maxScroll);
+      const opacity = 1 - scrollY / maxScroll;
+      background.style.opacity = opacity;
+    });
+
+    document.addEventListener('mousemove', e => {
+      const x = e.clientX;
+      const y = e.clientY;
+      background.style.maskImage = `radial-gradient(circle 150px at ${x}px ${y}px, black 0%, transparent 100%)`;
+      background.style.webkitMaskImage = `radial-gradient(circle 150px at ${x}px ${y}px, black 0%, transparent 100%)`;
+    });
 
     window.addEventListener('scroll', () => {
       const threshold = window.innerHeight * 0.5;
@@ -44,40 +130,7 @@
         header.style.opacity = '1';
       }
     });
-
-    // Background Slideshow
-    const background = document.getElementById('background');
-    const imageUrls = [
-      'images/risd1.jpg',
-      'images/risd2.jpg',
-      'images/risd3.jpg'
-    ];
-
-    let current = 0;
-
-    function changeBackground() {
-      background.style.backgroundImage = `url(${imageUrls[current]})`;
-      current = (current + 1) % imageUrls.length;
-    }
-
-    // Preload Images
-    imageUrls.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-
-    changeBackground();
-    setInterval(changeBackground, 8000);
-
-    // Scroll-Based Fade Out
-    window.addEventListener('scroll', () => {
-      const maxScroll = window.innerHeight * 2;
-      const scrollY = Math.min(window.scrollY, maxScroll);
-      const opacity = 1 - scrollY / maxScroll;
-      background.style.opacity = opacity;
-    });
   </script>
 </body>
 </html>
-
 
