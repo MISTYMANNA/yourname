@@ -34,6 +34,8 @@ body {
   z-index: -1;
   filter: blur(10px);
   transition: opacity 1s ease, background-image 1s ease;
+  mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 150px at center, black 0%, transparent 100%);
 }
 
 .header-wrapper {
@@ -82,7 +84,7 @@ body {
   background: transparent;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   padding: 0.5rem 1rem;
   gap: 1rem;
   z-index: 999;
@@ -92,19 +94,21 @@ body {
   transition: all 0.3s ease;
 }
 
-.sticky-header .name, {
+.sticky-header .name {
   white-space: nowrap;
   margin: 0;
   font-size: 2rem;
   font-family: 'Aileron Light', sans-serif;
   border-bottom: 2px solid white;
+  line-height: 1.2;
 }
+
 .sticky-header .tagline {
   white-space: nowrap;
   margin: 0;
-  font-size: 1rem;
-  font-family: 'Aileron Light', sans-serif;
-  border-bottom: 2px solid white;
+  font-size: 2rem;
+  font-family: 'Panel Mono', monospace;
+  line-height: 1.2;
 }
 
 .spacer {
@@ -123,4 +127,20 @@ body {
     transform: translateY(0);
   }
 }
+
+/* Mouse unblur spotlight */
+body {
+  cursor: none;
+}
+
+#background {
+  pointer-events: none;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+/* Will be controlled via JS: update mask on mouse move */
 
