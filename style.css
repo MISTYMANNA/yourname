@@ -74,7 +74,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background: transparent;
+  background: none;
   display: flex;
   justify-content: center;
   align-items: center;
