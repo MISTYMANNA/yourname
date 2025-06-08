@@ -13,29 +13,29 @@
 
   <!-- Hero Header -->
   <div class="header-wrapper" id="header">
-    <h1 class="name" id="nameText">Your name</h1>
-    <input type="text" id="nameInput" placeholder="Your name" style="display: none;" />
-    <h2 class="tagline">(IN THE COLLECTION)</h2>
+    <input type="text" id="nameInput" placeholder="Your name" />
+    <h2 class="tagline" id="tagline">(IN THE COLLECTION)</h2>
   </div>
 
   <!-- Sticky Header -->
   <div class="sticky-header" id="stickyHeader" style="display: none;">
-    <div class="name">Your name</div>
+    <div class="name" id="stickyName">Your name</div>
     <div class="tagline">(IN THE COLLECTION)</div>
   </div>
 
   <!-- Scrollable Content -->
   <div class="spacer">
-    Scroll down to see the sticky header and fading background.
+    Scroll down to scale and convert the title.
   </div>
 
   <!-- Scripts -->
   <script>
-    const header = document.getElementById('header');
-    const stickyHeader = document.getElementById('stickyHeader');
     const background = document.getElementById('background');
-    const nameText = document.getElementById('nameText');
+    const header = document.getElementById('header');
     const nameInput = document.getElementById('nameInput');
+    const tagline = document.getElementById('tagline');
+    const stickyHeader = document.getElementById('stickyHeader');
+    const stickyName = document.getElementById('stickyName');
 
     const imageUrls = [
       'images/risd1.jpg',
@@ -50,7 +50,6 @@
       current = (current + 1) % imageUrls.length;
     }
 
-    // preload images
     imageUrls.forEach(src => {
       const img = new Image();
       img.src = src;
@@ -59,30 +58,22 @@
     changeBackground();
     setInterval(changeBackground, 8000);
 
-    // Background fade out
+    // Scroll Transform Logic
     window.addEventListener('scroll', () => {
-      const maxScroll = window.innerHeight * 2;
-      const scrollY = Math.min(window.scrollY, maxScroll);
-      const opacity = 1 - scrollY / maxScroll;
-      background.style.opacity = opacity;
+      const scrollY = window.scrollY;
+      const trigger = window.innerHeight * 1.2;
 
-      // Show input when fully scrolled
-      if (scrollY >= maxScroll) {
-        nameText.style.display = 'none';
-        nameInput.style.display = 'inline-block';
-        nameInput.focus();
-      } else {
-        nameText.style.display = 'block';
-        nameInput.style.display = 'none';
-      }
-    });
+      // scale input and tagline during scroll
+      const scaleInput = Math.min(1 + scrollY / trigger, 1.5);
+      const scaleTagline = Math.max(1 - scrollY / trigger, 0.5);
+      nameInput.style.transform = `scale(${scaleInput})`;
+      tagline.style.transform = `scale(${scaleTagline})`;
 
-    // Sticky header logic
-    window.addEventListener('scroll', () => {
-      const threshold = window.innerHeight * 0.5;
-      if (window.scrollY > threshold) {
+      // sticky header activation
+      if (scrollY >= trigger) {
         stickyHeader.style.display = 'flex';
         header.style.opacity = '0';
+        stickyName.textContent = nameInput.value || 'Your name';
       } else {
         stickyHeader.style.display = 'none';
         header.style.opacity = '1';
