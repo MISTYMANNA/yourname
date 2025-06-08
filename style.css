@@ -1,1 +1,41 @@
+@font-face {
+  font-family: 'Aileron Light';
+  src: url('fonts/Aileron-Light.woff2') format('woff2');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Panel Mono';
+  src: url('fonts/PanelMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+}
+
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+}
+
+.header {
+  text-align: center;
+}
+
+.name {
+  font-family: 'Aileron Light', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-family: 'Panel Mono', monospace;
+  font-size: 3.5rem;
+  letter-spacing: 0.05em;
+}
 
