@@ -1,4 +1,5 @@
-/* === Custom Fonts === */
+/* === Font Faces (Optional) === */
+/* Make sure to include these only if you host actual font files */
 @font-face {
   font-family: 'Aileron Light';
   src: url('fonts/Aileron-Light.woff') format('woff');
@@ -20,13 +21,10 @@ body {
   color: white;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
+  font-family: 'Panel Mono', monospace;
 }
 
-h1, h2 {
-  margin: 0;
-}
-
-/* === Hero Section === */
+/* === Background Slideshow === */
 .background-slideshow {
   position: fixed;
   top: 0;
@@ -36,11 +34,12 @@ h1, h2 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1; /* Keep behind everything */
+  z-index: -1;
   opacity: 1;
   transition: opacity 1s ease, background-image 1s ease;
 }
 
+/* === Initial Header (Centered) === */
 .header-wrapper {
   position: relative;
   min-height: 100vh;
@@ -57,16 +56,20 @@ h1, h2 {
 .name {
   font-family: 'Aileron Light', sans-serif;
   font-size: 2rem;
+  margin: 0;
   transition: all 0.3s ease;
 }
 
 .tagline {
   font-family: 'Panel Mono', monospace;
-  font-size: 3rem;
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
   transition: all 0.3s ease;
 }
 
-/* === Sticky Header === */
+/* === Sticky Header on Scroll === */
 .sticky-header {
   position: fixed;
   top: 0;
@@ -80,29 +83,25 @@ h1, h2 {
   z-index: 999;
   text-align: center;
   transform: scale(0.95);
-  transition: all 0.3s ease-in-out;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.sticky-header.show {
   opacity: 1;
+  transition: all 0.3s ease;
 }
 
 .sticky-header .name,
 .sticky-header .tagline {
   font-size: 1.5rem;
   white-space: nowrap;
+  margin: 0;
 }
 
-/* === Scroll Content === */
+/* === Scroll Filler === */
 .spacer {
   height: 200vh;
   padding: 2rem;
   font-family: sans-serif;
 }
 
-
+/* === Fade In Animation === */
 @keyframes fadeIn {
   from {
     opacity: 0;
