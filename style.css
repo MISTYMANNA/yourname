@@ -36,9 +36,9 @@ h1, h2 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: -1; /* Keep behind everything */
   opacity: 1;
-  transition: opacity 1s ease;
+  transition: opacity 1s ease, background-image 1s ease;
 }
 
 .header-wrapper {
