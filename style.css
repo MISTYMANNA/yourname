@@ -2,7 +2,7 @@
 @font-face {
   font-family: 'Aileron Light';
   src: url('fonts/Aileron-Light.woff') format('woff');
-  font-weight: 300;
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -48,7 +48,7 @@ h1, h2 {
 
 .tagline {
   font-family: 'Panel Mono', monospace;
-  font-size: 3rem;
+  font-size: 5rem;
   transition: all 0.3s ease;
 }
 
