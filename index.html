@@ -117,7 +117,7 @@
   });
 </script>
 
-  <script>
+ <script>
   const background = document.getElementById('background');
   const imageUrls = [
     'https://raw.githubusercontent.com/MISTYMANNA/yourname/images/images/olivia.jpg',
@@ -132,11 +132,17 @@
     current = (current + 1) % imageUrls.length;
   }
 
-  // Initial background load
+  // preload all images
+  imageUrls.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
+  // Start
   changeBackground();
   setInterval(changeBackground, 8000);
 
-  // Fade out background on scroll
+  // Fade out on scroll
   window.addEventListener('scroll', () => {
     const maxScroll = window.innerHeight * 2;
     const scrollY = Math.min(window.scrollY, maxScroll);
@@ -144,6 +150,7 @@
     background.style.opacity = opacity;
   });
 </script>
+
 
 
 </body>
